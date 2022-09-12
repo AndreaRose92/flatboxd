@@ -17,6 +17,8 @@ don't already have them.
 
 ## Setup
 
+In the gemfile, comment out pg and add in sqlite3. Then change the adapter in the database.yml file to sqlite3 rather than postgresql.
+
 Start by **cloning** (not forking) the project template repository and removing
 the remote:
 

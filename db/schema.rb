@@ -12,12 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_09_12_154010) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "comments", force: :cascade do |t|
-    t.bigint "review_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "review_id", null: false
+    t.integer "user_id", null: false
     t.text "comment_body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -35,8 +32,8 @@ ActiveRecord::Schema.define(version: 2022_09_12_154010) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "review_id", null: false
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["review_id"], name: "index_likes_on_review_id"
@@ -47,8 +44,8 @@ ActiveRecord::Schema.define(version: 2022_09_12_154010) do
     t.text "content"
     t.integer "rating"
     t.boolean "completed"
-    t.bigint "user_id", null: false
-    t.bigint "game_id", null: false
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_reviews_on_game_id"
