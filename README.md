@@ -325,3 +325,5 @@ For additional support, check out these guides on Heroku:
 [postgres downloads page]: https://postgresapp.com/downloads.html
 [heroku rails deploying guide]: https://devcenter.heroku.com/articles/getting-started-with-rails6
 [troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting
+
+RAWG.io API key 789a16679dfd403c8ea384d45bee9828
