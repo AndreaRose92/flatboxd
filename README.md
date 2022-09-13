@@ -19,6 +19,8 @@ don't already have them.
 
 In the gemfile, comment out pg and add in sqlite3. Then change the adapter in the database.yml file to sqlite3 rather than postgresql.
 
+- npm install react-router-dom@5.3.3
+
 Start by **cloning** (not forking) the project template repository and removing
 the remote:
 
