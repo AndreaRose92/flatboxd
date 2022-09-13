@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :comments
-  resources :likes
   resources :reviews
-  resources :games
-  resources :users
+  resources :games, only: [:index, :show, :create]
+  resources :users, only: [:show, :create]
+  resources :comments, only: [:create, :update, :destroy]
+  resources :likes, only: [:create, :update, :destroy]
+  
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
