@@ -1,3 +1,5 @@
+puts "seeding..."
+
 Comment.destroy_all
 Like.destroy_all
 Review.destroy_all
@@ -11,7 +13,7 @@ Game.reset_pk_sequence
 Comment.reset_pk_sequence
 
 3.times do
-    User.create(username: Faker::Internet.email, password_digest: Faker::Name.name)
+    User.create(username: Faker::Internet.email, password_digest: Faker::Alphanumeric.alpha(number: 7))
 end
 
 10.times do
@@ -29,3 +31,5 @@ end
 20.times do
     Like.create(review_id: rand(1..30), user_id: rand(1..3))
 end
+
+puts "done seeding!"
