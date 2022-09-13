@@ -5,37 +5,29 @@ export default function Login() {
 
     const history = useHistory()
 
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
-
-    const handleInput = (e) => {
-        let formName = e.target.name
-        let formValue = e.target.value
-        setFormData({
-            ...formData,
-            [formName]: formValue
-        })
-    }
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch('/login', {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({formData})
+            body: JSON.stringify({
+                username,
+                password
+            })
         })
             .then(r=>r.json())
-            .then(()=>history.push('/games'))
+            .then(data=>history.push(`/${data.id}`))
     }
 
     return (
         <div>
             <h1>Login</h1>
             <form name='login' onSubmit={e=>handleSubmit(e)}>
-                <input type='text' placeholder='username' name='username' onChange={handleInput}/><br/>
-                <input type='text' placeholder='password' name='password' onChange={handleInput}/><br/>
+                <input type='text' placeholder='username' name='username' onChange={e=>setUsername(e.target.value)}/><br/>
+                <input type='password' placeholder='password' name='password' onChange={e=>setPassword(e.target.value)}/><br/>
                 <button type='submit'>Submit</button>
             </form>
         </div>

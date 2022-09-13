@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
 
+    # before_action :authorize
+    # skip_before_action :authorize, only: [:index, :show, :create]
+
     def index
         reviews = Review.all
         render json: reviews, status: :ok
@@ -16,6 +19,7 @@ class ReviewsController < ApplicationController
     end
 
     def update
+        return render json: {error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         review = find_review
         review.update!(review_params)
         render json: review, status: :accepted
@@ -36,5 +40,9 @@ class ReviewsController < ApplicationController
     def review_params
         params.permit(:content, :rating, :completed, :user_id, :game_id)
     end
+
+    # def authorize
+    #     return render json: {error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    # end
 
 end
