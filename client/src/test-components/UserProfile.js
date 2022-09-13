@@ -5,15 +5,32 @@ export default function UserProfile() {
 
     const params = useParams() 
 
-    const [userData, setUserData] = useState({})
+    const [username, setUsername] = useState('')
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch(`/users/${params.id}`).then(r=>r.json()).then(data=>setUserData(data))
-    }, [params.id])
+        fetch(`/users/${params.id}`)
+            .then(r=>r.json())
+            .then(data=>{setUsername(data.username); setReviews(data.reviews)})
+            // .then(data=>console.log(data))
+    }, [])
 
+    // console.log(userData.reviews)
+
+    const renderReviews = reviews.map(review => {
+        return (
+            <div key={review.id}>
+                <p>{review.content}</p>
+                <p>{review.rating}</p>
+                <p>{review.completed}</p>
+            </div>
+        )
+    })
+    
     return (
         <div>
-            <p>{userData.username}</p>
+            <h1>{username}</h1>
+            {renderReviews}
         </div>
     )
 
