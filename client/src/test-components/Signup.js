@@ -21,7 +21,7 @@ export default function Signup() {
             })
         })
             .then(r=>r.json())
-            .then(data=>history.push(`/${data.id}`))
+            .then(()=>history.push(`/login`))
     }
 
     return (
