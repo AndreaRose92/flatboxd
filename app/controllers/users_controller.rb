@@ -9,6 +9,12 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    # Get logged in user
+    def get_logged_in
+        user = User.find(session[:user_id])
+        render json: user, status: :ok
+    end
+
     def create
         user = User.create(user_params)
         if user.valid?

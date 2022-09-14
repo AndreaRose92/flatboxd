@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get '/users/:id', to: 'user_reviews#index'
   get '/test', to: 'games#test'
   post '/signup', to: "users#create"
-  get '/me', to: "users#show"
+  get '/me', to: "users#get_logged_in"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   

@@ -12,8 +12,6 @@ import EditReview from './test-components/EditReview';
 
 function App() {
  
-  const history = useHistory()
-
   // Array of /reviews resource
   const [reviews, setReviews] = useState([])
   function fetchAllReviews() {
@@ -22,7 +20,6 @@ function App() {
     .then(allReviews => setReviews(allReviews))
   }
   useEffect(()=> fetchAllReviews(),[])
-
 
   // Array of /games resource
   const [games, setGames] = useState([])
@@ -33,8 +30,8 @@ function App() {
   }
   useEffect(()=> fetchAllGames(),[])
 
+  // Setting logged in user
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
@@ -47,6 +44,7 @@ function App() {
     setUser(user);
   }
 
+  const history = useHistory()
   function handleLogout() {
     setUser(null);
     fetch('/logout', {
