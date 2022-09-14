@@ -37,7 +37,7 @@ function App() {
   
 
   return (
-    <div>
+    <div className='App'>
       <NavBar/>  
       <Switch>
         <Route exact path ="/games">
@@ -67,7 +67,7 @@ function App() {
           <EditReview />
         </Route>
       </Switch>
-    <div>
+    </div>
   );
 }
 
