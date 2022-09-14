@@ -11,7 +11,6 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(formData)
         fetch('/signup', {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -22,7 +21,6 @@ export default function Signup() {
             })
         })
             .then(r=>r.json())
-            // .then(data=>console.log(data))
             .then(data=>history.push(`/${data.id}`))
     }
 

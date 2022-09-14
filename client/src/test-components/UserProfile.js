@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import UserReviewCard from "../UserReviewCard"
 
-export default function UserProfile() {
+export default function UserProfile({user}) {
 
     const params = useParams() 
-    const history = useHistory()
 
     const [username, setUsername] = useState('')
     const [reviews, setReviews] = useState([])
@@ -12,41 +12,24 @@ export default function UserProfile() {
     useEffect(() => {
         fetch(`/users/${params.id}`)
             .then(r=>r.json())
-            .then(data=>{setUsername(data.username); setReviews(data.reviews)})
-            // .then(data=>console.log(data))
-    }, [])
+            .then(data=>setUsername(data.username))
+    }, [params.id])
 
-    useEffect(()=>{
-        fetch('/test')
-    }, [])
-
-    // console.log(userData.reviews)
-
-    const renderReviews = reviews.map(review => {
-        return (
-            <div key={review.id}>
-                <Link to={`/${params.id}/${review.id}`}>
-                    <p>{review.content}</p>
-                </Link>
-                <p>{review.rating}</p>
-                <p>{review.completed ? 'Completed' : "I'm a poser :("}</p>
-            </div>
-        )
-    })
+    useEffect(() => {
+        fetch(`/user_reviews/${params.id}`)
+            .then(r=>r.json())
+            .then(reviews=>setReviews(reviews))
+    }, [params.id])
     
-    const logout = () => {
-        fetch('/logout', {
-            method: "DELETE"
-        })
-            .then(()=>history.push('/login'))
-    }
+    const handleDelete = (reviewID) => {
+        setReviews(reviews => reviews.filter(review => review.id !== reviewID))
+      }
 
-    
+    const renderReviews = reviews.map(review => {return <UserReviewCard review={review} user={user} handleDelete={handleDelete}/>})
 
     return (
         <div>
             <h1>{username}</h1>
-            <button onClick={logout}>Logout</button>
             {renderReviews}
         </div>
     )

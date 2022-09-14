@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
-export default function Login() {
+export default function Login({ handleLogin }) {
 
     const history = useHistory()
 
@@ -19,13 +19,12 @@ export default function Login() {
             })
         })
             .then(r=>r.json())
-            // .then(()=>fetch('/test').then(r=>r.json()).then(data=>console.log(data)))
-            .then(data=>history.push(`/${data.id}`))
+            .then(user=>{handleLogin(user); history.push(`/${user.id}`)})
     }
 
-    useEffect(()=>{
-        fetch('/test')
-    }, [])
+    // useEffect(()=>{
+    //     fetch('/test')
+    // }, [])
 
     return (
         <div>

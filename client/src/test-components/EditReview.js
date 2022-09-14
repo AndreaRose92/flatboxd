@@ -16,7 +16,7 @@ export default function EditReview() {
         fetch(`/reviews/${params.review_id}`)
             .then(r=>r.json())
             .then(data=>setReview(data))
-    }, [])
+    }, [params.review_id])
 
     const handleInput = e => {
         let formName = e.target.name
@@ -36,7 +36,7 @@ export default function EditReview() {
             body: JSON.stringify(review)
         })
             .then(r=>r.json)
-            .then(()=>history.push(`/${params.id}/${params.review_id}`))
+            .then(()=>history.push(`/${params.id}`))
     }
 
     return (

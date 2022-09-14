@@ -13,7 +13,7 @@ export default function Review() {
         fetch(`/reviews/${params.review_id}`)
             .then(r=>r.json())
             .then(data=>{setReview(data); setComments(data.comments); setLikes(data.likes)})
-    }, [])
+    }, [params.review_id])
 
     // console.log(review.likes.length)
     // console.log(comments)

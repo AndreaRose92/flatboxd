@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create]
   resources :comments, only: [:create, :update, :destroy]
   resources :likes, only: [:create, :update, :destroy]
+  resources :user_reviews, only: [:show]
 
 
+  # get '/users/:id', to: 'user_reviews#index'
   get '/test', to: 'games#test'
   post '/signup', to: "users#create"
   get '/me', to: "users#show"

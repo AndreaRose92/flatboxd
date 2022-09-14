@@ -1,6 +1,5 @@
-// import { useEffect, useState } from "react";
 import './App.css';
-import { Route, Switch, useParams, useHistory, NavLink } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import HomeContent from './HomeContent';
 import NavBar from './NavBar';
@@ -12,7 +11,8 @@ import Review from './test-components/Review';
 import EditReview from './test-components/EditReview';
 
 function App() {
-
+ 
+  const history = useHistory()
 
   // Array of /reviews resource
   const [reviews, setReviews] = useState([])
@@ -33,12 +33,33 @@ function App() {
   }
   useEffect(()=> fetchAllGames(),[])
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch('/me').then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  function handleLogin(user) {
+    setUser(user);
+  }
+
+  function handleLogout() {
+    setUser(null);
+    fetch('/logout', {
+      method: "DELETE"
+    })
+      .then(()=>history.push('/login'))
+  }
  
   
 
   return (
     <div className='App'>
-      <NavBar/>  
+      <NavBar user={user} handleLogout={handleLogout} />  
       <Switch>
         <Route exact path ="/games">
           <GameLibrary
@@ -49,19 +70,20 @@ function App() {
           <HomeContent
             games = {games}
             reviews = {reviews}
+            user={user}
           />
         </Route>
         <Route exact path = '/signup'>
           <Signup />
         </Route>
         <Route exact path = '/login'>
-          <Login />
+          <Login handleLogin={handleLogin} />
         </Route>
         <Route exact path='/:id'>
-          <UserProfile />
+          <UserProfile user={user} />
         </Route>
         <Route exact path='/:id/:review_id'>
-          <Review />
+          <Review user={user} />
         </Route>
         <Route exact path='/:id/:review_id/edit'>
           <EditReview />
