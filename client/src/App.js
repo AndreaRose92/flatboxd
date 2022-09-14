@@ -1,13 +1,13 @@
 // import { useEffect, useState } from "react";
-import '../App.css';
+import './App.css';
 import { Route, Switch, useParams, useHistory } from 'react-router-dom';
-import HomePage from './HomePage';
-import Signup from './Signup';
-import Login from './Login';
-import Games from './Games';
-import UserProfile from './UserProfile';
-import Review from './Review';
-import EditReview from './EditReview';
+import HomePage from './test-components/HomePage';
+import Signup from './test-components/Signup';
+import Login from './test-components/Login';
+import Games from './test-components/Games';
+import UserProfile from './test-components/UserProfile';
+import Review from './test-components/Review';
+import EditReview from './test-components/EditReview';
 
 
 function App() {
