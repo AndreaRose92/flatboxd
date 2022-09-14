@@ -1,10 +1,15 @@
-import logo from './logo.svg';
+// import { useEffect, useState } from "react";
 import './App.css';
 import { Route, Switch, useParams, useHistory, NavLink } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import HomeContent from './HomeContent';
 import NavBar from './NavBar';
 import GameLibrary from './GameLibrary';
+import Signup from './test-components/Signup';
+import Login from './test-components/Login';
+import UserProfile from './test-components/UserProfile';
+import Review from './test-components/Review';
+import EditReview from './test-components/EditReview';
 
 function App() {
 
@@ -33,7 +38,7 @@ function App() {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar/>  
       <Switch>
         <Route exact path ="/games">
           <GameLibrary
@@ -46,10 +51,23 @@ function App() {
             reviews = {reviews}
           />
         </Route>
+        <Route exact path = '/signup'>
+          <Signup />
+        </Route>
+        <Route exact path = '/login'>
+          <Login />
+        </Route>
+        <Route exact path='/:id'>
+          <UserProfile />
+        </Route>
+        <Route exact path='/:id/:review_id'>
+          <Review />
+        </Route>
+        <Route exact path='/:id/:review_id/edit'>
+          <EditReview />
+        </Route>
       </Switch>
-      
-    </div>
-
+    <div>
   );
 }
 

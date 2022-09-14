@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   
   resources :reviews
   resources :games, only: [:index, :show, :create]
-  resources :users, only: [:show, :create]
+  resources :users, only: [:index, :show, :create]
   resources :comments, only: [:create, :update, :destroy]
   resources :likes, only: [:create, :update, :destroy]
 
+
+  get '/test', to: 'games#test'
   post '/signup', to: "users#create"
   get '/me', to: "users#show"
   post '/login', to: "sessions#create"
