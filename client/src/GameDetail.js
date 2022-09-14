@@ -34,6 +34,10 @@ function GameDetail({user}) {
 
 	const handleSubmit = e => {
 		e.preventDefault()
+		setContent('')
+		setRating(0)
+		setCompleted(0)
+		if (user) {
 		fetch('/reviews', {
 			method: "POST",
 			headers: {"Content-Type": "application/json"},
@@ -50,7 +54,9 @@ function GameDetail({user}) {
 					r.json().then(returnReview=>setReviews(reviews => [...reviews, returnReview]))
 				}
 			})
-			
+		} else {
+			alert("Log in to leave a review.")
+		}
 	}
 
 	console.log(completed)
