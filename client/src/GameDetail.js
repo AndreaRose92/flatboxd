@@ -2,34 +2,63 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
 
-function GameDetail() {
+function GameDetail({user}) {
 
 	const params = useParams()
 	const [game, setGame] = useState({})
-	const [reviews, setReviews] = useState([])
-
-
-  useEffect(()=> {
+	useEffect(()=> {
 		fetch(`/games/${params.id}`)
 			.then(r=>r.json())
 			.then( displayGame => setGame(displayGame))
-	},[])
-
+	},[params.id])
+	
+	const [reviews, setReviews] = useState([])
 	useEffect(()=> {
 		fetch(`/game_reviews/${params.id}`)
+		.then(r=>r.json())
+		.then( displayReviews => setReviews(displayReviews))
+	},[params.id])
+	
+	const [content, setContent] = useState('')
+	const [rating, setRating] = useState(0)
+	const [completed, setCompleted] = useState(null)
+
+	const handleSubmit = e => {
+		e.preventDefault()
+		fetch('/reviews', {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({
+				content,
+				rating,
+				completed,
+				user_id: user.id,
+				game_id: game.id
+			})
+		})
 			.then(r=>r.json())
-			.then( displayReviews => setReviews(displayReviews))
-	},[])
-
-	console.log(reviews)
-
+			.then(returnReview=>setReviews(reviews => [...reviews, returnReview]))
+	}
 
   return (
     <div>
-			<img src={game.image_url}/>
+			<img src={game.image_url} alt={game.title}/>
 			<h1>{game.title}</h1>
 			<h2>{game.genre}</h2>
 			<h2>{game.platform}</h2>
+			<form onSubmit={handleSubmit}>
+				<h2>Leave a Review:</h2>
+				<label htmlFor='content'>Content:
+					<textarea name='content' onChange={e=>setContent(e.target.value)} value={content}/>
+				</label><br/>
+				<label htmlFor='rating'>Rating:
+					<input type='number' name='rating' onChange={e=>setRating(e.target.value)} value={rating}/>
+				</label><br/>
+				<label htmlFor='completed'>Completed?
+					<input type='checkbox' name='completed' onChange={e=>setCompleted(e.target.value)} value={completed}/>
+				</label><br/>
+				<button type='submit'>Submit</button>
+			</form>
 			<h1>Reviews:</h1>
 			{reviews.map((review) => <GameDetailReviews review={review}/>)}
 		</div>

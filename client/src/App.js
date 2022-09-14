@@ -46,6 +46,7 @@ function App() {
   }
 
   const history = useHistory()
+  
   function handleLogout() {
     setUser(null);
     fetch('/logout', {
@@ -63,6 +64,7 @@ function App() {
         <Route exact path ="/games/:id">
           <GameDetail
             games = {games}
+            user={user}
           />
         </Route>
         <Route exact path ="/games">
