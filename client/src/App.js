@@ -9,6 +9,7 @@ import Login from './test-components/Login';
 import UserProfile from './test-components/UserProfile';
 import Review from './test-components/Review';
 import EditReview from './test-components/EditReview';
+import GameDetail from './GameDetail';
 
 function App() {
  
@@ -59,16 +60,14 @@ function App() {
     <div className='App'>
       <NavBar user={user} handleLogout={handleLogout} />  
       <Switch>
-        <Route exact path ="/games">
-          <GameLibrary
+        <Route exact path ="/games/:id">
+          <GameDetail
             games = {games}
           />
         </Route>
-        <Route exact path ="/">
-          <HomeContent
+        <Route exact path ="/games">
+          <GameLibrary
             games = {games}
-            reviews = {reviews}
-            user={user}
           />
         </Route>
         <Route exact path = '/signup'>
@@ -77,14 +76,21 @@ function App() {
         <Route exact path = '/login'>
           <Login handleLogin={handleLogin} />
         </Route>
-        <Route exact path='/:id'>
-          <UserProfile user={user} />
-        </Route>
         <Route exact path='/:id/:review_id'>
           <Review user={user} />
         </Route>
         <Route exact path='/:id/:review_id/edit'>
           <EditReview />
+        </Route>
+        <Route exact path='/:id'>
+          <UserProfile user={user} />
+        </Route>
+        <Route exact path ="/">
+          <HomeContent
+            games = {games}
+            reviews = {reviews}
+            user={user}
+          />
         </Route>
       </Switch>
     </div>

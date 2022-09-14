@@ -12,6 +12,7 @@ Like.reset_pk_sequence
 Game.reset_pk_sequence
 Comment.reset_pk_sequence
 
+
 Andrea = User.create(username: "AndreaRose", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQFbPdY0CapyEw/profile-displayphoto-shrink_200_200/0/1658856079190?e=1668643200&v=beta&t=WFJqThdN8zt1d2Zd21cGQkmClRaQPZA21sgaXPJ8Bbs")
 Victor = User.create(username: "VictorHaynes", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C4D03AQHd61yBh5zEJg/profile-displayphoto-shrink_200_200/0/1533918223115?e=1668643200&v=beta&t=yT5i5eGE6Zymqo4S9wgrCMAK00ibuUsdmvxp-oy-nbg")
 Sean = User.create(username: "ohsean812", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C5603AQHn-mhBaohSCg/profile-displayphoto-shrink_200_200/0/1651108282342?e=1668643200&v=beta&t=sRnVHywnL5BoYsruNmsN1r9poI9PfB4-Kn2IvDNtWlc")
