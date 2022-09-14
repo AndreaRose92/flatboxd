@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 function GameDetail({user}) {
 
