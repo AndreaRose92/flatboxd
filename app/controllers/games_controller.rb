@@ -15,9 +15,9 @@ class GamesController < ApplicationController
         render json: game, status: :created
     end
 
-    # def test
-    #     byebug
-    # end
+    def test
+        byebug
+    end
 
     private
 

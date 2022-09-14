@@ -16,6 +16,10 @@ export default function UserProfile() {
             // .then(data=>console.log(data))
     }, [])
 
+    useEffect(()=>{
+        fetch('/test')
+    }, [])
+
     // console.log(userData.reviews)
 
     const renderReviews = reviews.map(review => {

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :update, :destroy]
 
 
-  # get '/test', to: 'games#test'
+  get '/test', to: 'games#test'
   post '/signup', to: "users#create"
   get '/me', to: "users#show"
   post '/login', to: "sessions#create"

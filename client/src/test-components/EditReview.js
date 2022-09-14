@@ -29,10 +29,11 @@ export default function EditReview() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        console.log(review)
         fetch(`/reviews/${params.review_id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({review})
+            body: JSON.stringify(review)
         })
             .then(r=>r.json)
             .then(()=>history.push(`/${params.id}/${params.review_id}`))

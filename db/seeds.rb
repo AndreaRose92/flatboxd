@@ -13,7 +13,7 @@ Game.reset_pk_sequence
 Comment.reset_pk_sequence
 
 3.times do
-    User.create(username: Faker::Internet.email, password_digest: Faker::Alphanumeric.alpha(number: 7))
+    User.create(username: Faker::Internet.email, password: 'password')
 end
 
 10.times do
