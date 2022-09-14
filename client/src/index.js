@@ -8,11 +8,9 @@ import { BrowserRouter } from 'react-router-dom';
 // Remove Strict Mode, wrap in <Router>
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById('root')
 );
 

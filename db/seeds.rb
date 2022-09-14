@@ -21,7 +21,7 @@ end
 end
 
 30.times do
-    Review.create(content: Faker::Hipster.sentence, rating: rand(1..5), completed: true, user_id: rand(1..3), game_id: rand(1..10))
+    Review.create(content: Faker::Hipster.sentence, rating: rand(1..5), completed: [true, false].sample, user_id: rand(1..3), game_id: rand(1..10))
 end
 
 20.times do

@@ -5,5 +5,6 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :content, length: { minimum: 20 }
-  validates :rating, :completed, :user_id, :game_id, presence: true
+  validates :rating, :user_id, :game_id, presence: true
+  validates :completed, inclusion: [true, false]
 end
