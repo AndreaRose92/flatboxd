@@ -17,7 +17,7 @@ Comment.reset_pk_sequence
 end
 
 10.times do
-    Game.create(title: Faker::Game.title, genre: Faker::Game.genre, platform: Faker::Game.platform, image_url: "https://cdn.shopify.com/s/files/1/0129/7698/0032/products/min-video-game-sample-pack_940x1530.png?v=1628541839")
+    Game.create(title: Faker::Game.title, genre: Faker::Game.genre, platform: Faker::Game.platform, image_url: "https://upload.wikimedia.org/wikipedia/en/7/75/Super_Smash_Bros_Melee_box_art.png")
 end
 
 30.times do
