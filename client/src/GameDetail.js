@@ -21,7 +21,15 @@ function GameDetail({user}) {
 	
 	const [content, setContent] = useState('')
 	const [rating, setRating] = useState(0)
-	const [completed, setCompleted] = useState(null)
+	const [completed, setCompleted] = useState(0)
+
+	const handleCheck = () => {
+		if (completed === 0 ) {
+			setCompleted(true)
+		} else {
+			setCompleted(0)
+		}
+	}
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -33,12 +41,18 @@ function GameDetail({user}) {
 				rating,
 				completed,
 				user_id: user.id,
-				game_id: game.id
+				game_id: params.id
 			})
 		})
-			.then(r=>r.json())
-			.then(returnReview=>setReviews(reviews => [...reviews, returnReview]))
+			.then(r=> {
+				if (r.ok) {
+					r.json().then(returnReview=>setReviews(reviews => [...reviews, returnReview]))
+				}
+			})
+			
 	}
+
+	console.log(completed)
 
   return (
     <div>
@@ -55,7 +69,8 @@ function GameDetail({user}) {
 					<input type='number' name='rating' onChange={e=>setRating(e.target.value)} value={rating}/>
 				</label><br/>
 				<label htmlFor='completed'>Completed?
-					<input type='checkbox' name='completed' onChange={e=>setCompleted(e.target.value)} value={completed}/>
+					{/* <input type='checkbox' name='completed' onChange={()=>setCompleted(completed => !completed)}/> */}
+					<input type='checkbox' name='completed' onChange={handleCheck}/>
 				</label><br/>
 				<button type='submit'>Submit</button>
 			</form>
