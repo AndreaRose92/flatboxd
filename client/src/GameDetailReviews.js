@@ -9,7 +9,7 @@ function GameDetailReviews({review, user}) {
   const [showComments, setShowComments] = useState(false)
   const [likes, setLikes] = useState([...review.likes])
 
-  let like = likes.find(like => like.user_id === user.id)
+  let like = user ? likes.find(like => like.user_id === user.id) : null
 
   // Add a mouse hover effect with CSS to make it interact like a button
   function handleClick(){
@@ -84,6 +84,8 @@ function GameDetailReviews({review, user}) {
     setComment('')
   }
 
+  const likeButton = user ? like ? <button onClick={handleUnlike}>{`${likes.length} ❤️`}</button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button> : <h3>{`${likes.length} ❤️`}</h3>
+
   const commentForm = user ? <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form> : null
 
   return (
@@ -91,10 +93,9 @@ function GameDetailReviews({review, user}) {
       <h3>rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3>
       <h3>{review.completed ? "Completed" : "Giver-upper :("}</h3>
       <h4>{review.content}</h4>
+      {likeButton}
       <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
       {showComments ? <GameDetailComments comments={comments}/> : null}
-      {like ? <button onClick={handleUnlike}>❤️</button> : <button onClick={handleLike}>♡</button>}
-      <h3>{likes.length}</h3>
       {commentForm}
 		</div>
     )

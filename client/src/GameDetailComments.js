@@ -1,9 +1,14 @@
 import React from 'react'
 
 function GameDetailComments({comments}) {
+
+  console.log(comments)
+
+  const sortedComments = comments.sort((a,b)=>b.id-a.id)
+
   return (
     <div>
-        {comments.map((comment) => <p>{comment.comment_body}</p>)}
+        {sortedComments.map((comment) => <p>{comment.comment_body}</p>)}
     </div>
   )
 }
