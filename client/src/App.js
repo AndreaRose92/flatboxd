@@ -12,6 +12,7 @@ import EditReview from './test-components/EditReview';
 import GameDetail from './GameDetail';
 // Styled Components
 import { PageGrid, Margins, CenterColumn } from './Styles/Grid.Styles';
+import GlobalStyles from './GlobalStyles';
 
 function App() {
  
@@ -66,7 +67,12 @@ function App() {
   return (
     // <div className='App'>
     <PageGrid>
-      <NavBar user={user} handleLogout={handleLogout} />  
+      <GlobalStyles/>
+      <Margins>
+        <CenterColumn>
+          <NavBar user={user} handleLogout={handleLogout} /> 
+        </CenterColumn>
+      </Margins>
       <Margins>
         <CenterColumn>
           <Switch>

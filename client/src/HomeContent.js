@@ -11,7 +11,7 @@ function HomeContent({games, reviews, user}) {
 
   // sort the array of reviews based on largest id (newest) to smallest id (oldest) 
   const recentReviews = [...reviews].sort( (a,b) => b.id - a.id)
-  const displayRecentReviews = recentReviews.slice(0,1).map( (review) => <HomeReviewCard key={review.id} review={review} user={user} />)
+  const displayRecentReviews = recentReviews.slice(0,5).map( (review) => <HomeReviewCard key={review.id} review={review} user={user} />)
 
 
   return (

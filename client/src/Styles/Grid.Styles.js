@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const PageGrid = styled.div `
     display: grid;
-    grid-template-rows: 125px 1fr;
+    grid-template-rows: 70px 1fr;
 `
 
 const Margins = styled.div`
@@ -15,10 +15,16 @@ const CenterColumn = styled.div`
     grid-column: 2;
 `
 
+// NavBar Layout
+const NavGrid = styled.div`
+    display: grid;
+    grid-template-columns: 202.5px 195px 195px 195px 195px 202.5px;
+`
+
 // HomeContent.js - Component
 const HomeRows = styled.div`
     display: grid;
-    grid-template-rows: 150px 100px 615px 100px 2000px;
+    grid-template-rows: 80px 70px 615px 80px 2000px;
 `
 
 const PopularGamesGrid = styled.div`
@@ -30,6 +36,8 @@ const PopularGamesGrid = styled.div`
     img {
         height: 300px;
         width: auto;
+        border-radius: 5px;
+        outline: 2px solid grey
     }
 `
 
@@ -39,4 +47,5 @@ const LatestReviewsGrid = styled.div`
 `
 
 
-export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid}
+
+export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid, NavGrid}
