@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function HomeReviewCard({review, user}) {
   
   return (
-  <div key={review.id} className="reviews">
+  <div className="reviews">
     <h2>{review.game.title}</h2>
     <h3>{review.content}</h3>
     <h3>{review.completed ? "Completed" : "Did Not finish"}</h3>

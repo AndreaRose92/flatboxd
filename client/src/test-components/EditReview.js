@@ -11,7 +11,7 @@ export default function EditReview() {
 	const [completed, setCompleted] = useState(0)
 
     const handleCheck = () => {
-		if (completed === 0 || completed === false) {
+		if (completed !== true) {
 			setCompleted(true)
 		} else {
 			setCompleted(0)
@@ -49,7 +49,7 @@ export default function EditReview() {
             .then(()=>history.push(`/${params.id}`))
     }
 
-    const showCheckbox = completed ? <h2>You finished the game!</h2> : <label htmlFor='completed'>Completed?<input type='checkbox' name='completed' onChange={handleCheck}/></label>  
+    const showCheckbox = completed ? <h4>You finished the game!</h4> : <label htmlFor='completed'>Completed?<input type='checkbox' name='completed' onChange={handleCheck}/></label>  
 
     return (
         <div>

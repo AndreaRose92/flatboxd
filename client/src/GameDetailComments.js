@@ -9,7 +9,7 @@ function GameDetailComments({comments, user, reviewUser, setComments}) {
         .then(()=>setComments(comments.filter(c => c.id !== comment.id)))
     }
 
-    return (<div>
+    return (<div key={comment.id}>
       <p>{comment.comment_body}</p>
       {user && (user.id === comment.user_id || user.id === reviewUser) ? <button onClick={handleDelete} >🗑️</button> : null}
     </div>)
