@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.permit(:user_id, :game_id, :comment_body)
+        params.permit(:user_id, :review_id, :comment_body)
     end
 
 end

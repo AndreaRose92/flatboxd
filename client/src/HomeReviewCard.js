@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function HomeReviewCard({review, user}) {
-  
-  // Can't get "completed" attribute to contain a falsy value?
   
   return (
   <div key={review.id} className="reviews">

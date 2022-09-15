@@ -5,6 +5,7 @@ import GameDetailComments from './GameDetailComments';
 
 function GameDetailReviews({review, user}) {
 
+  const [comments, setComments] = useState(review.comments)
   const [showComments, setShowComments] = useState(false)
   const [likes, setLikes] = useState([...review.likes])
 
@@ -62,24 +63,39 @@ function GameDetailReviews({review, user}) {
     }
   }
 
-  // const likeButton = () => {
-  //   if (user) {
-  //   // let like = likes.find(like => like.user_id === user.id)
-  //   user && like ? <button onClick={handleLike}>❤️</button> : <button onClick={handleUnlike}>♡</button>
-  //   }
-  // }
+  const [comment, setComment] = useState('')
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    fetch(`/comments`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        comment_body: comment,
+        user_id: user.id,
+        review_id: review.id
+      })
+    })
+      .then(r=>{
+        if (r.ok) {
+          r.json().then(newComment=>setComments(comments=>[...comments, newComment]))
+        }
+      })
+    setComment('')
+  }
 
+  const commentForm = user ? <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form> : null
 
   return (
     <div className ="reviews">
       <h3>rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3>
       <h3>{review.completed ? "Completed" : "Giver-upper :("}</h3>
       <h4>{review.content}</h4>
-      <h3 onClick = {handleClick}>Comments: {review.comments.length}</h3>
-      {showComments ? <GameDetailComments comments={review.comments}/> : null}
+      <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
+      {showComments ? <GameDetailComments comments={comments}/> : null}
       {like ? <button onClick={handleUnlike}>❤️</button> : <button onClick={handleLike}>♡</button>}
       <h3>{likes.length}</h3>
+      {commentForm}
 		</div>
     )
 }
