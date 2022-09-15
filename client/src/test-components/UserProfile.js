@@ -25,9 +25,9 @@ export default function UserProfile({user}) {
         setReviews(reviews => reviews.filter(review => review.id !== reviewID))
       }
 
-    const renderReviews = reviews.map(review => {return <UserReviewCard review={review} user={user} handleDelete={handleDelete}/>})
+    const sortedReviews = [...reviews].sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
 
-      console.log(userData)
+    const renderReviews = sortedReviews.map(review => {return <UserReviewCard key={review.id} review={review} user={user} handleDelete={handleDelete}/>})
 
     return (
         <div>
