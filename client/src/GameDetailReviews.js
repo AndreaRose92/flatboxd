@@ -11,6 +11,7 @@ function GameDetailReviews({review, user}) {
 
   const sortedComments = comments.sort((a,b)=>b.id-a.id)
 
+
   let like = user ? likes.find(like => like.user_id === user.id) : null
 
   // Add a mouse hover effect with CSS to make it interact like a button

@@ -10,6 +10,9 @@ import UserProfile from './test-components/UserProfile';
 import Review from './test-components/Review';
 import EditReview from './test-components/EditReview';
 import GameDetail from './GameDetail';
+// Styled Components
+import { PageGrid, Margins, CenterColumn } from './Styles/Grid.Styles';
+import GlobalStyles from './GlobalStyles';
 
 function App() {
  
@@ -49,53 +52,68 @@ function App() {
   
   function handleLogout() {
     setUser(null);
-    fetch('/logout', {
-      method: "DELETE"
-    })
-      .then(()=>history.push('/login'))
   }
  
+  // Update state of App/HomeContent when submitting review from GameDetail
+  function updateReviewsMasterState(new_review){
+    setReviews((reviews) => [...reviews, new_review])
+  }
+
+  function forceLogin() {
+    if (!user) return history.push('/login')
+  }
   
 
   return (
-    <div className='App'>
-      <NavBar user={user} handleLogout={handleLogout} />  
-      <Switch>
-        <Route exact path ="/games/:id">
-          <GameDetail
-            games = {games}
-            user={user}
-          />
-        </Route>
-        <Route exact path ="/games">
-          <GameLibrary
-            games = {games}
-          />
-        </Route>
-        <Route exact path = '/signup'>
-          <Signup handleLogin={handleLogin} />
-        </Route>
-        <Route exact path = '/login'>
-          <Login handleLogin={handleLogin} />
-        </Route>
-        <Route exact path='/:id/:review_id'>
-          <Review user={user} />
-        </Route>
-        <Route exact path='/:id/:review_id/edit'>
-          <EditReview />
-        </Route>
-        <Route exact path='/:id'>
-          <UserProfile user={user} />
-        </Route>
-        <Route exact path ="/">
-          <HomeContent
-            games = {games}
-            reviews = {reviews}
-            user={user}
-          />
-        </Route>
-      </Switch>
-    </div>
+    // <div className='App'>
+    <PageGrid>
+      <GlobalStyles/>
+      <Margins>
+        <CenterColumn>
+          <NavBar user={user} handleLogout={handleLogout} /> 
+        </CenterColumn>
+      </Margins>
+      <Margins>
+        <CenterColumn>
+          <Switch>
+            <Route exact path ="/games/:id">
+              <GameDetail
+                games = {games}
+                user={user}
+                updateReviewsMasterState={updateReviewsMasterState}
+              />
+            </Route>
+            <Route exact path ="/games">
+              <GameLibrary
+                games = {games}
+              />
+            </Route>
+            <Route exact path = '/signup'>
+              <Signup handleLogin={handleLogin} />
+            </Route>
+            <Route exact path = '/login'>
+              <Login handleLogin={handleLogin} />
+            </Route>
+            <Route exact path='/:id/:review_id'>
+              <Review user={user} />
+            </Route>
+            <Route exact path='/:id/:review_id/edit'>
+              <EditReview />
+            </Route>
+            <Route exact path='/:id'>
+              <UserProfile user={user} forceLogin={forceLogin}/>
+            </Route>
+            <Route exact path ="/">
+              <HomeContent
+                games = {games}
+                reviews = {reviews}
+                user={user}
+              />
+            </Route>
+          </Switch>
+        </CenterColumn>
+      </Margins>
+    </PageGrid>
   );
 }
 

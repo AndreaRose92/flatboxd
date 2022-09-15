@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_action :authorize, only: [:create]
+
     def create
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
@@ -11,8 +13,9 @@ class SessionsController < ApplicationController
     end
     
     def destroy
-        session.delete :user_id
+        session.destroy
         head :no_content
+        # render json: session
     end
 
 end
