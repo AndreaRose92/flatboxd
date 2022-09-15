@@ -4,6 +4,7 @@ import { HomeReviewCardStyling } from './Styles/Card.Styles'
 import {AiFillHeart} from 'react-icons/ai'
 
 function HomeReviewCard({review, user}) {
+
     
   return (
   <HomeReviewCardStyling>
@@ -25,6 +26,7 @@ function HomeReviewCard({review, user}) {
       {/* <h3 className="likes"><AiFillHeart/> { review.likes.length}</h3> */}
 
   </HomeReviewCardStyling>
+
   )
 }
 

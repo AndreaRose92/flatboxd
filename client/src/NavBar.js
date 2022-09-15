@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import { NavGrid } from './Styles/Grid.Styles'
 
@@ -6,6 +7,7 @@ function NavBar({user, handleLogout}) {
 
   const history = useHistory()
   
+
   const onLogout = () => {
     fetch('/logout', {
       method: "DELETE"
@@ -24,6 +26,7 @@ function NavBar({user, handleLogout}) {
         {user ? <NavLink to={`/${user.id}`}>My Profile</NavLink> : <NavLink path to ="/signup">Signup</NavLink>}
         <NavLink path to ="/">About</NavLink>
     </NavGrid>
+
   )
 }
 

@@ -16,6 +16,10 @@ Comment.reset_pk_sequence
 Andrea = User.create(username: "AndreaRose", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQFbPdY0CapyEw/profile-displayphoto-shrink_200_200/0/1658856079190?e=1668643200&v=beta&t=WFJqThdN8zt1d2Zd21cGQkmClRaQPZA21sgaXPJ8Bbs")
 Victor = User.create(username: "VictorHaynes", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C4D03AQHd61yBh5zEJg/profile-displayphoto-shrink_200_200/0/1533918223115?e=1668643200&v=beta&t=yT5i5eGE6Zymqo4S9wgrCMAK00ibuUsdmvxp-oy-nbg")
 Sean = User.create(username: "ohsean812", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C5603AQHn-mhBaohSCg/profile-displayphoto-shrink_200_200/0/1651108282342?e=1668643200&v=beta&t=sRnVHywnL5BoYsruNmsN1r9poI9PfB4-Kn2IvDNtWlc")
+Adam = User.create(username: "AdamLaRosa", password: "password", avatar: "https://media-exp1.licdn.com/dms/image/C5603AQE-FflsVX3HzA/profile-displayphoto-shrink_800_800/0/1596080670926?e=1668643200&v=beta&t=-ZeD00VDhu7uGZvT5Rgpi04yvAHygY-a06YrjcZxAmc")
+Austin = User.create(username: "AustinPawers", password: "password", avatar: "https://64.media.tumblr.com/2c73bd4c42e4907bcc92154ded06e862/5f5a4c3002fc166d-11/s400x600/6c0e18d3aa5eed095bf5c44c26fda470c6f6940c.jpg")
+Diana = User.create(username: "DianaPawPrints", password: "password", avatar: "https://64.media.tumblr.com/28f27f1e0a02c85c130c7831f9fa6064/5f5a4c3002fc166d-b4/s400x600/059902dffd443584b4789aa64d04c81fd5e512f2.jpg")
+
 
 # 10.times do
 #     Game.create(title: Faker::Game.title, genre: Faker::Game.genre, platform: Faker::Game.platform, image_url: "https://cdn.shopify.com/s/files/1/0129/7698/0032/products/min-video-game-sample-pack_940x1530.png?v=1628541839")
@@ -54,17 +58,17 @@ Hades = Game.create(title: "Hades", genre: "Action Roguelite", platform: "PS4/PS
 
 
 User.all.size.times do |u|
-    Game.all.size.times do |g|
-       Review.create(content: Faker::Hipster.sentence, rating: rand(1..5), completed: [true, false].sample, user_id: u+1, game_id: g+1)
+    rand(4..10).times do |g|
+       Review.create(content: Faker::Hipster.sentence, rating: rand(1..5), completed: [true, false].sample, user_id: u+1, game_id: Game.all.sample.id)
     end
 end
 
-20.times do
-    Comment.create(review_id: rand(1..30), user_id: rand(1..3), comment_body: Faker::Company.bs)
+60.times do
+    Comment.create(review_id: Review.all.sample.id, user_id: User.all.sample.id, comment_body: Faker::Company.bs)
 end
 
-40.times do
-    Like.create(review_id: rand(1..30), user_id: rand(1..3))
+80.times do
+    Like.create(review_id: Review.all.sample.id, user_id: User.all.sample.id)
 end
 
 puts "done seeding!"
