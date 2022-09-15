@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import {HiThumbUp} from 'react-icons/hi'
+// import {HiThumbUp} from 'react-icons/hi'
 import GameDetailComments from './GameDetailComments';
 
 function GameDetailReviews({review, user}) {
@@ -8,6 +8,8 @@ function GameDetailReviews({review, user}) {
   const [comments, setComments] = useState(review.comments)
   const [showComments, setShowComments] = useState(false)
   const [likes, setLikes] = useState([...review.likes])
+
+  const sortedComments = comments.sort((a,b)=>b.id-a.id)
 
   let like = user ? likes.find(like => like.user_id === user.id) : null
 
@@ -20,7 +22,7 @@ function GameDetailReviews({review, user}) {
   function renderStarRating(rating){
     const likes = []
     for (let i = 0; i < rating; i++) {
-      likes.push(<AiFillStar/>)
+      likes.push(<AiFillStar key={i}/>)
     }
     return likes
   }
@@ -29,12 +31,10 @@ function GameDetailReviews({review, user}) {
   function renderEmptyStars(rating){
     const emptyStars = []
     for (let i = 0; i < 5-rating; i++) {
-      emptyStars.push(<AiOutlineStar/>)
+      emptyStars.push(<AiOutlineStar key={i} />)
     }
     return emptyStars
   }
-
-  console.log(likes)
 
   const handleLike = () => {
     if (user) {
@@ -95,7 +95,7 @@ function GameDetailReviews({review, user}) {
       <h4>{review.content}</h4>
       {likeButton}
       <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
-      {showComments ? <GameDetailComments comments={comments}/> : null}
+      {showComments ? <GameDetailComments user={user} comments={sortedComments} setComments={setComments} reviewUser={review.user.id}/> : null}
       {commentForm}
 		</div>
     )

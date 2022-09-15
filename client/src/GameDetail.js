@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+// import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 function GameDetail({user}) {
 
@@ -59,11 +59,9 @@ function GameDetail({user}) {
 		}
 	}
 
-	console.log(completed)
-
 	const sortedReviews = [...reviews].sort((a,b)=> b.id - a.id)
 
-	const renderGameReviews = sortedReviews.map((review) => <GameDetailReviews user={user} review={review}/>)
+	const renderGameReviews = sortedReviews.map((review) => <GameDetailReviews user={user} review={review} key={review.id} />)
 
   return (
     <div>
