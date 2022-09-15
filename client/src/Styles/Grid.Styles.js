@@ -15,6 +15,10 @@ const CenterColumn = styled.div`
     grid-column: 2;
 `
 
+const ContentPadding = styled.div`
+    margin-top: 50px;
+`
+
 // NavBar Layout
 const NavGrid = styled.div`
     display: grid;
@@ -32,6 +36,7 @@ const PopularGamesGrid = styled.div`
     grid-template-rows: repeat(2, 300px);
     grid-template-columns: repeat(5, 225px);
     gap: 15px;
+    padding-bottom: 50px;
 
     img {
         height: 300px;
@@ -46,6 +51,27 @@ const LatestReviewsGrid = styled.div`
     grid-template-rows: repeat(5, 180px);
 `
 
+// GameLibrary.js - component
+const LibraryRows = styled.div`
+    display: grid;
+    grid-template-rows: 80px 70px 1560px;
 
 
-export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid, NavGrid}
+`
+const GameLibraryGrid = styled.div`
+    display: grid;
+    grid-template-rows: repeat(5, 300px);
+    grid-template-columns: repeat(5, 225px);
+    gap: 15px;
+    padding-bottom: 50px;
+
+    img {
+        height: 300px;
+        width: auto;
+        border-radius: 5px;
+        outline: 2px solid grey
+    }
+`
+
+
+export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid, NavGrid, ContentPadding, LibraryRows, GameLibraryGrid}

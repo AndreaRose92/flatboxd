@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import GameLibraryCard from './GameLibraryCard'
 import GameSearch from './GameSearch'
+import { LibraryRows } from './Styles/Grid.Styles'
+import { LibraryStyles } from './Styles/HeaderText.Styles'
+
 
 function GameLibrary({games}) {
-  
-  // const displayGames = games.map((game) => <GameLibraryCard game={game} />)
 
   const [ searchString, setSearchString ] = useState("")
 
@@ -13,15 +14,13 @@ function GameLibrary({games}) {
   })
 
   return (
-    <div>
-
-        <GameSearch searchString={searchString} onSearchChange={setSearchString} />
-
-        {/* {displayGames} */}
-        <GameLibraryCard games={filteredGames} />
-        
-
-    </div>
+    <LibraryRows>
+      <LibraryStyles>
+        <h1>LIBRARY</h1>
+      </LibraryStyles>
+      <GameSearch searchString={searchString} onSearchChange={setSearchString} />
+      <GameLibraryCard games={filteredGames} />
+    </LibraryRows>
   )
 }
 

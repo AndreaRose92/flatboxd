@@ -2,6 +2,7 @@ import React from 'react'
 import HomeGameCard from './HomeGameCard'
 import HomeReviewCard from './HomeReviewCard'
 import { HomeRows, LatestReviewsGrid, PopularGamesGrid } from './Styles/Grid.Styles'
+import { HomeStyles } from './Styles/HeaderText.Styles'
 
 function HomeContent({games, reviews, user}) {
 
@@ -16,15 +17,17 @@ function HomeContent({games, reviews, user}) {
 
   return (
   <HomeRows>
-    <h1>Home </h1>
-    <h2>Popular Games</h2>
-    <PopularGamesGrid>
-      {displayPopularGames}
-    </PopularGamesGrid>
-    <h2>Latest Reviews</h2>
-    <LatestReviewsGrid>
-      {displayRecentReviews}
-    </LatestReviewsGrid>
+    <HomeStyles>
+      <h1>HOME</h1>
+      <h2>Popular Games</h2>
+      <PopularGamesGrid>
+        {displayPopularGames}
+      </PopularGamesGrid>
+      <h2>Latest Reviews</h2>
+      <LatestReviewsGrid>
+        {displayRecentReviews}
+      </LatestReviewsGrid>
+      </HomeStyles>
   </HomeRows>
   )
 }

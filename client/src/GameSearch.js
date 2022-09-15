@@ -1,9 +1,10 @@
 import React from "react";
+import { SearchInput } from "./Styles/Search.Styles";
 
 function GameSearch({ searchString, onSearchChange }) {
     return (
         <div>
-            <input
+            <SearchInput
                 type = "text"
                 placeholder = "Search for games..."
                 value = {searchString}

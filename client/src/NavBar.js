@@ -1,7 +1,7 @@
 import React from 'react'
-
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import { NavGrid } from './Styles/Grid.Styles'
+import { NavStyles } from './Styles/Nav.Styles'
 
 function NavBar({user, handleLogout}) {
 
@@ -18,15 +18,16 @@ function NavBar({user, handleLogout}) {
   }
 
   return (
-    <NavGrid>
-        <h1>FLATBOXD</h1>
-        <NavLink path to ="/">Home</NavLink>
-        <NavLink path to ="/games">Games</NavLink>
-        {user ? <button onClick={onLogout}>Logout</button> :<NavLink path to ="/login">Login</NavLink>}
-        {user ? <NavLink to={`/${user.id}`}>My Profile</NavLink> : <NavLink path to ="/signup">Signup</NavLink>}
-        <NavLink path to ="/">About</NavLink>
-    </NavGrid>
-
+    <NavStyles>
+      <NavGrid >
+          <h1>FLATBOXD</h1>
+          <NavLink exact to ="/">Home</NavLink>
+          <NavLink exact to ="/games">Games</NavLink>
+          {user ? <button onClick={onLogout}>Logout</button> :<NavLink exact to ="/login">Login</NavLink>}
+          {user ? <NavLink to={`/${user.id}`}>My Profile</NavLink> : <NavLink exact to ="/signup">Signup</NavLink>}
+          <NavLink exact to ="/">About</NavLink>
+      </NavGrid>
+    </NavStyles>
   )
 }
 
