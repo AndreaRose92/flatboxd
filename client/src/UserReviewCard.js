@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { AiFillHeart, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import GameDetailComments from './GameDetailComments';
 
 function UserReviewCard({review, user, handleDelete}) {
@@ -104,6 +104,7 @@ function UserReviewCard({review, user, handleDelete}) {
     <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
     {showComments ? <GameDetailComments user={user} comments={sortedComments} setComments={setComments} reviewUser={review.user.id}/> : null}
     {commentForm}
+    <h3><AiFillHeart/>{` ${review.likes.length} Comments: ${review.comments.length}`}</h3>
   </div>
   )
 }

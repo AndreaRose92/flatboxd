@@ -4,3 +4,5 @@ class Comment < ApplicationRecord
 
   validates :comment_body, length: { minimum: 10 }
 end
+
+
