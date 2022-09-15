@@ -10,7 +10,8 @@ function HomeReviewCard({review, user}) {
     <h2>{review.game.title}</h2>
     <h3>{review.content}</h3>
     <h3>{review.completed ? "Completed" : "Did Not finish"}</h3>
-    {/* <Link to={`/users/${user.id}`}> */}
+
+    {/* <Link to={`/${review.user.id}`}> */}
       <h3><img src={review.user.avatar} className ="avatar" /> {review.user.username}</h3>
     {/* </Link> */}
     <h3>{review.created_at.slice(0,10)}</h3>
