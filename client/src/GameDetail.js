@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
-function GameDetail({user}) {
+function GameDetail({user, updateReviewsMasterState}) {
 
 	const params = useParams()
 	const [game, setGame] = useState({})
@@ -51,12 +51,19 @@ function GameDetail({user}) {
 		})
 			.then(r=> {
 				if (r.ok) {
-					r.json().then(returnReview=>setReviews(reviews => [...reviews, returnReview]))
+					r.json().then(returnReview=>{
+						setReviews(reviews => [...reviews, returnReview])
+						updateReviewsMasterState(returnReview)
+					})
 				}
 			})
 		} else {
 			alert("Log in to leave a review.")
 		}
+		setContent('')
+		setRating(0)
+		setCompleted(0)
+		e.target.reset()
 	}
 
 	console.log(completed)

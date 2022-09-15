@@ -1,27 +1,31 @@
 import React from 'react'
 import HomeGameCard from './HomeGameCard'
 import HomeReviewCard from './HomeReviewCard'
+import { HomeRows, LatestReviewsGrid, PopularGamesGrid } from './Styles/Grid.Styles'
 
 function HomeContent({games, reviews, user}) {
 
   // sort the array of games based on the number of reviews (most to least)
   const popularGames = [...games].sort( (a,b) => b.reviews.length - a.reviews.length)
-  const displayPopularGames = popularGames.map( (game) => <HomeGameCard game={game} key={game.id} />)
+  const displayPopularGames = popularGames.slice(0,10).map( (game) => <HomeGameCard game={game} key={game.id} />)
 
   // sort the array of reviews based on largest id (newest) to smallest id (oldest) 
   const recentReviews = [...reviews].sort( (a,b) => b.id - a.id)
-  const displayRecentReviews = recentReviews.map( (review) => <HomeReviewCard key={review.id} review={review} user={user} />)
+  const displayRecentReviews = recentReviews.slice(0,1).map( (review) => <HomeReviewCard key={review.id} review={review} user={user} />)
 
 
   return (
-
-    <div>
-      <h1>Popular Games</h1>
+  <HomeRows>
+    <h1>Home </h1>
+    <h2>Popular Games</h2>
+    <PopularGamesGrid>
       {displayPopularGames}
-
-      <h1>Latest Reviews</h1>
+    </PopularGamesGrid>
+    <h2>Latest Reviews</h2>
+    <LatestReviewsGrid>
       {displayRecentReviews}
-    </div>
+    </LatestReviewsGrid>
+  </HomeRows>
   )
 }
 

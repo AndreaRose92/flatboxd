@@ -2,19 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function HomeReviewCard({review, user}) {
-  
-  // Can't get "completed" attribute to contain a falsy value?
-  
+    
   return (
   <div key={review.id} className="reviews">
-    <h2>{review.game.title}</h2>
+    <Link to ={`/games/${review.game.id}`}>
+      <h2>{review.game.title}</h2>
+    </Link>
     <h3>{review.content}</h3>
     <h3>{review.completed ? "Completed" : "Did Not finish"}</h3>
 
-    {/* <Link to={`/${review.user.id}`}> */}
+    <Link to={`/${review.user.id}`}>
       <h3><img src={review.user.avatar} className ="avatar" /> {review.user.username}</h3>
-    {/* </Link> */}
+    </Link>
     <h3>{review.created_at.slice(0,10)}</h3>
+    <h3>❤️{review.likes.length}</h3>
+    <h3>Comments: {review.comments.length}</h3>
   </div>
   )
 }
