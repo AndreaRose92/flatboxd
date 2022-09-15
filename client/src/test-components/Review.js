@@ -15,11 +15,6 @@ export default function Review() {
             .then(data=>{setReview(data); setComments(data.comments); setLikes(data.likes)})
     }, [params.review_id])
 
-    // console.log(review.likes.length)
-    // console.log(comments)
-
-    
-
     const renderComments = comments.map(c => {
         return (
             <div key={c.id}>
