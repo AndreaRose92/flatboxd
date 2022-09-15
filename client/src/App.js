@@ -59,6 +59,12 @@ function App() {
     setReviews((reviews) => [...reviews, new_review])
   }
 
+  function replaceUpdatedReview(new_review){
+    let filterdReviews = reviews.filter(review => review.id !== new_review.id)
+    filterdReviews.push(new_review)
+    setReviews(filterdReviews)
+  }
+
   function forceLogin() {
     if (!user) return history.push('/login')
   }
@@ -98,7 +104,9 @@ function App() {
               <Review user={user} />
             </Route>
             <Route exact path='/:id/:review_id/edit'>
-              <EditReview />
+              <EditReview
+                replaceUpdatedReview={replaceUpdatedReview}
+              />
             </Route>
             <Route exact path='/:id'>
               <UserProfile user={user} forceLogin={forceLogin}/>

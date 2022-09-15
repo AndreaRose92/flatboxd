@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 
-export default function EditReview() {
+export default function EditReview({replaceUpdatedReview}) {
     
     const history = useHistory() 
     const params = useParams()
@@ -45,8 +45,11 @@ export default function EditReview() {
                 completed
             })
         })
-            .then(r=>r.json)
-            .then(()=>history.push(`/${params.id}`))
+            .then(r=>r.json())
+            .then(updatedReview=>{
+                replaceUpdatedReview(updatedReview)
+                history.push(`/${params.id}`)
+            })
     }
 
     const showCheckbox = completed ? <h4>You finished the game!</h4> : <label htmlFor='completed'>Completed?<input type='checkbox' name='completed' onChange={handleCheck}/></label>  
