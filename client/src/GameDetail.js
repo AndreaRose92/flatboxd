@@ -61,6 +61,10 @@ function GameDetail({user}) {
 
 	console.log(completed)
 
+	const sortedReviews = [...reviews].sort((a,b)=> b.id - a.id)
+
+	const renderGameReviews = sortedReviews.map((review) => <GameDetailReviews user={user} review={review}/>)
+
   return (
     <div>
 			<img src={game.image_url} alt={game.title}/>
@@ -82,7 +86,8 @@ function GameDetail({user}) {
 				<button type='submit'>Submit</button>
 			</form>
 			<h1>Reviews:</h1>
-			{reviews.map((review) => <GameDetailReviews review={review}/>)}
+			{renderGameReviews}
+			{/* {reviews.map((review) => <GameDetailReviews user={user} review={review}/>)} */}
 		</div>
   )
 }

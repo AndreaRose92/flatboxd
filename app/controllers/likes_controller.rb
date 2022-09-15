@@ -5,12 +5,6 @@ class LikesController < ApplicationController
         render json: like, status: :created
     end
 
-    def update
-        like = find_like
-        like.update!(like_params)
-        render json: like, status: :accepted
-    end
-
     def destroy
         like = find_like
         like.destroy
@@ -24,7 +18,7 @@ class LikesController < ApplicationController
     end
 
     def like_params
-        params.permit(:user_id, :game_id)
+        params.permit(:user_id, :review_id)
     end
 
 end
