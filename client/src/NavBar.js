@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function NavBar({user, handleLogout}) {
   
@@ -9,7 +9,7 @@ function NavBar({user, handleLogout}) {
         <NavLink path to ="/">Home</NavLink>
         <NavLink path to ="/games">Games</NavLink>
         {user ? <button onClick={handleLogout}>Logout</button> :<NavLink path to ="/login">Login</NavLink>}
-        <NavLink path to ="/signup">Signup</NavLink> 
+        {user ? <NavLink to={`/${user.id}`}>My Profile</NavLink> : <NavLink path to ="/signup">Signup</NavLink>}
     </div>
   )
 }

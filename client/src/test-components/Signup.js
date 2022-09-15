@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
-export default function Signup() {
+export default function Signup({handleLogin}) {
     
     const history = useHistory()
 
@@ -21,12 +21,12 @@ export default function Signup() {
             })
         })
             .then(r=>r.json())
-            .then(()=>history.push(`/login`))
+            .then(newUser=>{handleLogin(newUser); history.push(`/${newUser.id}`)})
     }
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
             <form name='login' onSubmit={e=>handleSubmit(e)}>
                 <input type='text' placeholder='username' name='username' onChange={e => setUsername(e.target.value)}/><br/>
                 <input type='password' placeholder='password' name='password' onChange={e => setPassword(e.target.value)}/><br/>

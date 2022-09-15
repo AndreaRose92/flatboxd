@@ -73,7 +73,7 @@ function App() {
           />
         </Route>
         <Route exact path = '/signup'>
-          <Signup />
+          <Signup handleLogin={handleLogin} />
         </Route>
         <Route exact path = '/login'>
           <Login handleLogin={handleLogin} />
