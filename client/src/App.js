@@ -84,7 +84,7 @@ function App() {
         <Route exact path='/:id/:review_id/edit'>
           <EditReview />
         </Route>
-        <Route exact path='/users/:id'>
+        <Route exact path='/:id'>
           <UserProfile user={user} />
         </Route>
         <Route exact path ="/">
