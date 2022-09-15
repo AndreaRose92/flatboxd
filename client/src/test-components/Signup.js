@@ -26,7 +26,7 @@ export default function Signup() {
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Signup</h1>
             <form name='login' onSubmit={e=>handleSubmit(e)}>
                 <input type='text' placeholder='username' name='username' onChange={e => setUsername(e.target.value)}/><br/>
                 <input type='password' placeholder='password' name='password' onChange={e => setPassword(e.target.value)}/><br/>
