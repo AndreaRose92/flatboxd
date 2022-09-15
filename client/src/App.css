@@ -40,3 +40,10 @@
 div.reviews {
   outline: 5px dotted blueviolet;
 }
+
+.avatar {
+  max-width: 50px;
+  height: auto;
+  border: 1px solid darkgrey;
+  border-radius: 25px;
+}

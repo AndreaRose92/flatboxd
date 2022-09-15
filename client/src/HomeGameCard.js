@@ -9,5 +9,4 @@ function HomeGameCard({game}) {
   )
 }
 
-
 export default HomeGameCard
