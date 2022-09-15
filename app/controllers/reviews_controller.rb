@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
 
-    # before_action :authorize
-    # skip_before_action :authorize, only: [:index, :show, :create]
+    skip_before_action :authorize, only: [:index, :show]
 
     def index
         reviews = Review.all
@@ -23,8 +22,6 @@ class ReviewsController < ApplicationController
         if review.user_id == session[:user_id]
             review.update!(review_params)
             render json: review, status: :accepted
-        else
-            return render json: {error: "Not authorized" }, status: :unauthorized
         end
     end
 

@@ -8,7 +8,7 @@ function GameDetailReviews({review, user}) {
   const [showComments, setShowComments] = useState(false)
   const [likes, setLikes] = useState([...review.likes])
 
-  let like = likes.find(like => like.user_id === user.id)
+  let like = user ? likes.find(like => like.user_id === user.id) : null
 
   // Add a mouse hover effect with CSS to make it interact like a button
   function handleClick(){

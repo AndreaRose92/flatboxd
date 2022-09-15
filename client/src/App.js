@@ -52,15 +52,15 @@ function App() {
   
   function handleLogout() {
     setUser(null);
-    fetch('/logout', {
-      method: "DELETE"
-    })
-      .then(()=>history.push('/login'))
   }
  
   // Update state of App/HomeContent when submitting review from GameDetail
   function updateReviewsMasterState(new_review){
     setReviews((reviews) => [...reviews, new_review])
+  }
+
+  function forceLogin() {
+    if (!user) return history.push('/login')
   }
   
 
@@ -101,7 +101,7 @@ function App() {
               <EditReview />
             </Route>
             <Route exact path='/:id'>
-              <UserProfile user={user} />
+              <UserProfile user={user} forceLogin={forceLogin}/>
             </Route>
             <Route exact path ="/">
               <HomeContent
