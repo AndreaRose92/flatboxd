@@ -8,6 +8,7 @@ export default function Signup({handleLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [avatar, setAvatar] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,7 +18,9 @@ export default function Signup({handleLogin}) {
             body: JSON.stringify({
                 username,
                 password,
-                password_confirmation: passwordConfirmation
+                password_confirmation: passwordConfirmation,
+                avatar,
+                admin: false
             })
         })
             .then(r=>r.json())
@@ -28,9 +31,10 @@ export default function Signup({handleLogin}) {
         <div>
             <h1>Sign Up</h1>
             <form name='login' onSubmit={e=>handleSubmit(e)}>
-                <input type='text' placeholder='username' name='username' onChange={e => setUsername(e.target.value)}/><br/>
-                <input type='password' placeholder='password' name='password' onChange={e => setPassword(e.target.value)}/><br/>
-                <input type='password' placeholder='repeat password' name='password_confirmation' onChange={e => setPasswordConfirmation(e.target.value)}/><br/>
+                <input autoComplete="off" type='text' placeholder='username' name='username' onChange={e => setUsername(e.target.value)}/><br/>
+                <input autoComplete="off" type='text' placeholder='avatar url' name='avatar' onChange={e => setAvatar(e.target.value)}/><br/>
+                <input autoComplete="off" type='password' placeholder='password' name='password' onChange={e => setPassword(e.target.value)}/><br/>
+                <input autoComplete="off" type='password' placeholder='repeat password' name='password_confirmation' onChange={e => setPasswordConfirmation(e.target.value)}/><br/>
                 <button type='submit'>Submit</button>
             </form>
         </div>

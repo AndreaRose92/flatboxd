@@ -22,16 +22,12 @@ export default function Login({ handleLogin }) {
             .then(user=>{handleLogin(user); history.push(`/${user.id}`)})
     }
 
-    // useEffect(()=>{
-    //     fetch('/test')
-    // }, [])
-
     return (
         <div>
             <h1>Login</h1>
             <form name='login' onSubmit={e=>handleSubmit(e)}>
-                <input type='text' placeholder='username' name='username' onChange={e=>setUsername(e.target.value)}/><br/>
-                <input type='password' placeholder='password' name='password' onChange={e=>setPassword(e.target.value)}/><br/>
+                <input autoComplete="off" type='text' placeholder='username' name='username' onChange={e=>setUsername(e.target.value)}/><br/>
+                <input autoComplete="off" type='password' placeholder='password' name='password' onChange={e=>setPassword(e.target.value)}/><br/>
                 <button type='submit'>Submit</button>
             </form>
         </div>

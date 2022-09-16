@@ -16,7 +16,7 @@ function HomeReviewCard({review, user}) {
       <h3 className='completed'>{review.completed ? "Completed" : "Did Not Finish"}</h3>
 
       <Link className ="profile"to={`/${review.user.id}`}>
-        <img src={review.user.avatar} className ="avatar" />
+        <img src={review.user.avatar} className ="avatar" alt="user avatar"/>
       </Link>
       <Link className ="profileName"to={`/${review.user.id}`}>
         <h4>by: {review.user.username}</h4>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import HomeGameCard from './HomeGameCard'
 import HomeReviewCard from './HomeReviewCard'
 import { HomeRows, LatestReviewsGrid, PopularGamesGrid } from './Styles/Grid.Styles'
@@ -27,6 +28,7 @@ function HomeContent({games, reviews, user}) {
       <LatestReviewsGrid>
         {displayRecentReviews}
       </LatestReviewsGrid>
+      <Link to='/games/new'>Submit a New Game</Link>
       </HomeStyles>
   </HomeRows>
   )

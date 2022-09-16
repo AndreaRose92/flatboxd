@@ -13,8 +13,12 @@ class GamesController < ApplicationController
     end
 
     def create
-        game = Game.create!(game_params)
-        render json: game, status: :created
+        if User.find(params[:user_id]).admin == true
+            game = Game.create!(game_params)
+            render json: game, status: :created
+        else
+            return render json: {error: ["Not authorized"]}, status: :unauthorized
+        end
     end
 
     def test

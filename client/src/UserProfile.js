@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import UserReviewCard from "../UserReviewCard"
+import UserReviewCard from "./UserReviewCard"
 
 export default function UserProfile({user, forceLogin}) {
 
