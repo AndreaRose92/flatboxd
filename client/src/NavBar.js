@@ -19,7 +19,7 @@ function NavBar({user, handleLogout}) {
         <NavLink exact to ="/">Home</NavLink>
         <NavLink exact to ="/games">Games</NavLink>
         {user ? <NavLink exact to="/logout" onClick={onLogout}>Logout</NavLink> :<NavLink exact to ="/login">Login</NavLink>}
-        {user ? <NavLink to={`/${user.id}`}>My Profile</NavLink> : <NavLink exact to ="/signup">Signup</NavLink>}
+        {user ? <NavLink to={`/users/${user.id}`}>My Profile</NavLink> : <NavLink exact to ="/signup">Signup</NavLink>}
         <NavLink exact to ="/about">About</NavLink>
       </NavGrid>
     </NavStyles>

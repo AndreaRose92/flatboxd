@@ -14,6 +14,7 @@ export default function NewGameForm({user}) {
 
     const handleSubmit = e => {
         e.preventDefault()
+        if (!user) {user = {id: 0}}
         fetch('/games', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
