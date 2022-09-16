@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
-import { GameDetailGrid, GameDetailRows, LatestReviewsGrid } from './Styles/Grid.Styles'
+import { GameDetailGrid, GameDetailRows } from './Styles/Grid.Styles'
 import { GameDetailHeader } from './Styles/HeaderText.Styles'
-// import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+
 
 function GameDetail({user, updateReviewsMasterState}) {
 
