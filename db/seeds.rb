@@ -72,7 +72,7 @@ Win11 = Game.create(title: "World Soccer Winning Eleven 8 International", genre:
 puts "seeding reviews"
 
 User.all.size.times do |u|
-    rand(4..10).times do |g|
+    rand(10..20).times do |g|
        Review.create(content: Faker::Hipster.sentence, rating: rand(1..5), completed: [true, false].sample, user_id: User.all.sample.id, game_id: Game.all.sample.id)
     end
 end
