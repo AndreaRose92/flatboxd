@@ -77,6 +77,7 @@ function GameDetail({user, updateReviewsMasterState}) {
 			<h1>{game.title}</h1>
 			<h2>{game.genre}</h2>
 			<h2>{game.platform}</h2>
+			<h2>Average Rating: {game.average_rating}</h2>
 			<form onSubmit={handleSubmit}>
 				<h2>Leave a Review:</h2>
 				<label htmlFor='content'>Content:
