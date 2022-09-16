@@ -97,7 +97,17 @@ const GameDetailReviewStyling = styled.div`
         margin-bottom: 100px;
     } */
 `
+const CommentDeleteButtonStyle = styled.div`
+    button {
+        /* margin-left: 620px; */
+        margin-bottom: 15px;
+    }
+    p {
+        width: 50%;
+        height: auto;
+    }
+
+`
 
 
-
-export {HomeReviewCardStyling, GameDetailReviewStyling}
+export {HomeReviewCardStyling, GameDetailReviewStyling, CommentDeleteButtonStyle}
