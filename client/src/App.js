@@ -15,6 +15,7 @@ import GlobalStyles from './GlobalStyles';
 import About from './About';
 import Logout from './Logout';
 import NewGameForm from './NewGameForm';
+import PleaseSignIn from './PleaseSignIn';
 
 function App() {
  
@@ -68,7 +69,7 @@ function App() {
   }
 
   function forceLogin() {
-    if (!user) return history.push('/login')
+    if (!user) return history.push('/unauthorized')
   }
   
 
@@ -82,6 +83,9 @@ function App() {
             <Switch>
               <Route path='/about'>
                 <About />
+              </Route>
+              <Route path='/unauthorized'>
+                <PleaseSignIn />
               </Route>
               <Route path='/games/new'>
                 <NewGameForm user={user}/>
@@ -108,12 +112,12 @@ function App() {
               <Route path = '/login'>
                 <Login handleLogin={handleLogin} />
               </Route>
-              <Route path='/:id/:review_id/edit'>
+              <Route path='/users/:id/:review_id/edit'>
                 <EditReview
                   replaceUpdatedReview={replaceUpdatedReview}
                 />
               </Route>
-              <Route path='/:id'>
+              <Route path='/users/:id'>
                 <UserProfile user={user} forceLogin={forceLogin}/>
               </Route>
               <Route exact path ="/">

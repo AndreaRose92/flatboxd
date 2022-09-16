@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { Error } from "./Styles/Error.Styles"
 
 export default function Signup({handleLogin}) {
     
@@ -9,6 +10,7 @@ export default function Signup({handleLogin}) {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [avatar, setAvatar] = useState("")
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,10 +24,14 @@ export default function Signup({handleLogin}) {
                 avatar,
                 admin: false
             })
-        })
-            .then(r=>r.json())
-            .then(newUser=>{handleLogin(newUser); history.push(`/${newUser.id}`)})
-    }
+        }).then(r=>{
+            if (r.ok) {
+                r.json().then(newUser=>{handleLogin(newUser); history.push(`/users/${newUser.id}`)})
+            } else {
+                r.json().then(err=>setErrors([err]))
+            }
+        }
+    )}
 
     return (
         <div>
@@ -36,6 +42,9 @@ export default function Signup({handleLogin}) {
                 <input autoComplete="off" type='password' placeholder='password' name='password' onChange={e => setPassword(e.target.value)}/><br/>
                 <input autoComplete="off" type='password' placeholder='repeat password' name='password_confirmation' onChange={e => setPasswordConfirmation(e.target.value)}/><br/>
                 <button type='submit'>Submit</button>
+                {errors.map(err=>(
+                    <Error key={err}>{err.error}</Error>
+                ))}
             </form>
         </div>
     )

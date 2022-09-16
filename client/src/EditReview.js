@@ -48,7 +48,7 @@ export default function EditReview({replaceUpdatedReview}) {
             .then(r=>r.json())
             .then(updatedReview=>{
                 replaceUpdatedReview(updatedReview)
-                history.push(`/${params.id}`)
+                history.push(`/users/${params.id}`)
             })
     }
 
