@@ -8,7 +8,7 @@ function GameLibraryCard({games}) {
       <GameLibraryGrid>
         {games.map((game) => {
           return (
-            <Link to={`/games/${game.id}`}>
+            <Link to={`/games/${game.id}`} key={game.id}>
               <img src={game.image_url} alt="video game" />
             </Link>
           )

@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
     def destroy
         session.destroy
         head :no_content
-        # render json: session
     end
 
 end

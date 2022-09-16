@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { AiFillHeart, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import GameDetailComments from './GameDetailComments';
 
@@ -11,6 +11,8 @@ function UserReviewCard({review, user, handleDelete}) {
     })
     .then(()=>handleDelete(review.id))
   }
+
+  const history = useHistory()
 
   const [comments, setComments] = useState([...review.comments])
   const [showComments, setShowComments] = useState(false)
@@ -72,6 +74,7 @@ function UserReviewCard({review, user, handleDelete}) {
 
   const handleSubmit = e => {
     e.preventDefault()
+    if (!user) {user = {id: 0}}
     fetch(`/comments`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -84,6 +87,8 @@ function UserReviewCard({review, user, handleDelete}) {
       .then(r=>{
         if (r.ok) {
           r.json().then(newComment=>setComments(comments=>[...comments, newComment]))
+        } else {
+          history.push('/unauthorized')
         }
       })
     setComment('')
@@ -91,14 +96,16 @@ function UserReviewCard({review, user, handleDelete}) {
 
   const likeButton = user ? like ? <button onClick={handleUnlike}>{`${likes.length} ❤️`}</button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button> : <h3>{`${likes.length} ❤️`}</h3>
 
-  const commentForm = user ? <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form> : null
+  const commentForm = <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form>
+
+  console.log(review)
 
   return (
   <div className='reviews'>
     <h3>rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3>
     <h3>{review.completed ? "Completed" : "Giver-upper :("}</h3>
     <h4>{review.content}</h4>
-    {user && user.id === review.user.id ? <Link to={`/${user.id}/${review.id}/edit`}><button>Edit</button></Link> : null}
+    {user && user.id === review.user.id ? <Link to={`/users/${user.id}/${review.id}/edit`}><button>Edit</button></Link> : null}
     {user && user.id === review.user.id ? <button onClick={deleteReview}>Delete</button> : null}
     {likeButton}
     <h3 onClick = {handleClick}>Comments: {comments.length}</h3>

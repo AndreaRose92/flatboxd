@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { useHistory } from 'react-router-dom';
 // import {HiThumbUp} from 'react-icons/hi'
 import GameDetailComments from './GameDetailComments';
 
 function GameDetailReviews({review, user}) {
+
+  const history = useHistory()
 
   const [comments, setComments] = useState(review.comments)
   const [showComments, setShowComments] = useState(false)
@@ -50,7 +53,7 @@ function GameDetailReviews({review, user}) {
       .then(r=>{
         if (r.ok) {r.json().then(newLike=>setLikes(likes => [...likes, newLike]))}}
     )} else {
-			alert("Log in to like or unlike a review.")
+			history.push('/unauthorized')
 		}
   }
 
@@ -60,7 +63,7 @@ function GameDetailReviews({review, user}) {
       fetch(`/likes/${like.id}`, {method: "DELETE"})
         .then(()=>setLikes(likes=>likes.filter(l=>l.id !== like.id)))
     } else {
-        alert("Log in to like or unlike a review.")
+      history.push('/unauthorized')
     }
   }
 
@@ -68,6 +71,7 @@ function GameDetailReviews({review, user}) {
 
   const handleSubmit = e => {
     e.preventDefault()
+    if (!user) {user = {id: 0}}
     fetch(`/comments`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -80,14 +84,16 @@ function GameDetailReviews({review, user}) {
       .then(r=>{
         if (r.ok) {
           r.json().then(newComment=>setComments(comments=>[...comments, newComment]))
+        } else {
+          history.push('/unauthorized')
         }
       })
     setComment('')
   }
 
-  const likeButton = user ? like ? <button onClick={handleUnlike}>{`${likes.length} ❤️`}</button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button> : <h3>{`${likes.length} ❤️`}</h3>
+  const likeButton = like ? <button onClick={handleUnlike}>{`${likes.length} ❤️`}</button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button>
 
-  const commentForm = user ? <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form> : null
+  const commentForm = <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form>
 
   return (
     <div className ="reviews">
