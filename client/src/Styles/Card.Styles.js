@@ -106,7 +106,7 @@ const CommentDeleteButtonStyle = styled.div`
         width: 50%;
         height: auto;
     }
-`
 
+`
 
 export {HomeReviewCardStyling, GameDetailReviewStyling, CommentDeleteButtonStyle}
