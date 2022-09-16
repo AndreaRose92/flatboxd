@@ -109,5 +109,4 @@ const CommentDeleteButtonStyle = styled.div`
 
 `
 
-
 export {HomeReviewCardStyling, GameDetailReviewStyling, CommentDeleteButtonStyle}
