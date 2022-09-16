@@ -98,6 +98,8 @@ function UserReviewCard({review, user, handleDelete}) {
 
   const commentForm = <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form>
 
+  console.log(review)
+
   return (
   <div className='reviews'>
     <h3>rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3>

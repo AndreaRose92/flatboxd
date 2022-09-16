@@ -9,7 +9,6 @@ export default function UserProfile({user, forceLogin}) {
     
     const [userData, setUserData] = useState({})
     const [reviews, setReviews] = useState([])
-    // const [errors, setErrors] = useState([]);
 
     useEffect(() => {
         fetch(`/users/${params.id}`)
