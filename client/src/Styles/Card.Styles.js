@@ -39,7 +39,7 @@ const HomeReviewCardStyling = styled.div`
 
     a.profile {
         position: absolute;
-        margin-left: 1100px;
+        margin-left: 1120px;
         margin-top: 10px;
         width: 52px;
         height: 52px;
@@ -47,7 +47,7 @@ const HomeReviewCardStyling = styled.div`
 
     a.profileName {
         position: absolute;
-        margin-left: 975px;
+        margin-left: 965px;
         color: white;
     }
 
@@ -68,11 +68,36 @@ const HomeReviewCardStyling = styled.div`
     }
     
     h3.reviewStats {
-        margin-left: 810px;
+        margin-left: 800px;
         margin-top: -40px;
         font-weight: lighter;
     }
 
 `
 
-export {HomeReviewCardStyling}
+const GameDetailReviewStyling = styled.div`
+
+    /* border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    position: relative;
+
+/* 
+    span {
+        margin-left: 10px;
+        height: 30px
+    }
+
+    h3.completed{
+        color: white;
+
+        text-align: right;
+    }
+
+    h4 {
+        margin-bottom: 100px;
+    } */
+`
+
+
+
+export {HomeReviewCardStyling, GameDetailReviewStyling}

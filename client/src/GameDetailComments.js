@@ -16,7 +16,7 @@ function GameDetailComments({comments, user, reviewUser, setComments}) {
   })
 
   return (
-    <div>
+    <div className='comments'>
         {displayComments}
     </div>
   )

@@ -48,7 +48,7 @@ const PopularGamesGrid = styled.div`
 
 const LatestReviewsGrid = styled.div`
     display: grid;
-    grid-template-rows: repeat(5, 180px);
+    grid-template-rows: repeat(5, 280px);
 `
 
 // GameLibrary.js - component
@@ -72,6 +72,17 @@ const GameLibraryGrid = styled.div`
         outline: 2px solid grey
     }
 `
+// GameDetail.js - Component
+const GameDetailRows = styled.div`
+    display: grid;
+    grid-template-rows: 460px 80px 1fr;
+`
+// GameDetail.hs - header (img/title & details)
+const GameDetailGrid = styled.div`
+    display: grid;
+    grid-template-columns: auto auto;
+`
 
 
-export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid, NavGrid, ContentPadding, LibraryRows, GameLibraryGrid}
+
+export {PageGrid, Margins, CenterColumn, HomeRows, PopularGamesGrid, LatestReviewsGrid, NavGrid, ContentPadding, LibraryRows, GameLibraryGrid, GameDetailRows, GameDetailGrid}

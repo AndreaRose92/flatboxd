@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { useHistory } from 'react-router-dom';
+import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai';
+import { useHistory, Link } from 'react-router-dom';
 // import {HiThumbUp} from 'react-icons/hi'
 import GameDetailComments from './GameDetailComments';
+import { GameDetailReviewStyling } from './Styles/Card.Styles';
+import { HomeReviewCardStyling } from './Styles/Card.Styles';
 
 function GameDetailReviews({review, user}) {
 
@@ -91,20 +93,40 @@ function GameDetailReviews({review, user}) {
     setComment('')
   }
 
-  const likeButton = like ? <button onClick={handleUnlike}>{`${likes.length} ❤️`}</button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button>
+  const likeButton = like ? <button onClick={handleUnlike}>{likes.length}<AiFillHeart/></button> : <button onClick={handleLike}>{`${likes.length} ♡`}</button>
 
   const commentForm = <form onSubmit={handleSubmit}><label htmlFor='comment'>Leave a Comment: <input type='text' name='comment' onChange={e=>setComment(e.target.value)} value={comment}/></label> <button type='submit'>Submit</button></form>
 
   return (
-    <div className ="reviews">
-      <h3>rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3>
-      <h3>{review.completed ? "Completed" : "Giver-upper :("}</h3>
-      <h4>{review.content}</h4>
-      {likeButton}
-      <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
+    // <GameDetailReviewStyling >
+    //   <span><h3>Rating: {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}</h3></span>
+    //   <h3 className='completed'>{review.completed ? "Completed" : "Did Not Finish"}</h3>
+    //   <h4>{review.content}</h4>
+    //   {likeButton}
+    //   <h3 onClick = {handleClick}>Comments: {comments.length}</h3>
+    //   {showComments ? <GameDetailComments user={user} comments={sortedComments} setComments={setComments} reviewUser={review.user.id}/> : null}
+    //   {commentForm}
+		// </GameDetailReviewStyling>
+
+    <HomeReviewCardStyling>
+      <img className="game" src={review.game.image_url} alt="reviewed game"/>
+      <Link className='title' to ={`/games/${review.game.id}`}>
+      {renderStarRating(review.rating)}{renderEmptyStars(review.rating)}
+      </Link>
+      <h3 className='content'>{review.content}</h3>
+      <h3 className='completed'>{review.completed ? "Completed" : "Did Not Finish"}</h3>
+
+      <Link className ="profile"to={`/users/${review.user.id}`}>
+        <img src={review.user.avatar} className ="avatar" alt="user avatar"/>
+      </Link>
+      <Link className ="profileName"to={`/users/${review.user.id}`}>
+        <h4>by: {review.user.username}</h4>
+      </Link>
+      <h3 className='created'>{review.created_at.slice(0,10)}</h3>
+      <h3 className="reviewStats" onClick = {handleClick} >{likeButton} Comments: {review.comments.length}</h3>
       {showComments ? <GameDetailComments user={user} comments={sortedComments} setComments={setComments} reviewUser={review.user.id}/> : null}
-      {commentForm}
-		</div>
+    </HomeReviewCardStyling>
+
     )
 }
 

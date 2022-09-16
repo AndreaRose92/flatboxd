@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
+import { GameDetailGrid, GameDetailRows, LatestReviewsGrid } from './Styles/Grid.Styles'
+import { GameDetailHeader } from './Styles/HeaderText.Styles'
 // import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 function GameDetail({user, updateReviewsMasterState}) {
@@ -72,30 +74,35 @@ function GameDetail({user, updateReviewsMasterState}) {
 	const renderGameReviews = sortedReviews.map((review) => <GameDetailReviews user={user} review={review} key={review.id} />)
 
   return (
-    <div>
-			<img src={game.image_url} alt={game.title}/>
-			<h1>{game.title}</h1>
-			<h2>{game.genre}</h2>
-			<h2>{game.platform}</h2>
-			<h2>Average Rating: {game.average_rating}</h2>
+    <GameDetailRows>
+		<GameDetailGrid>
+			<GameDetailHeader>
+				<h1 className='title'>{game.title}</h1>
+				<img src={game.image_url} alt={game.title}/>
+				<div>
+					<h1>Genre:</h1>
+					<h2>{game.genre}</h2>
+					<h1>Platform:</h1>
+					<h2>{game.platform}</h2>
+					<h1>Average Rating:</h1>
+					<h2>{game.average_rating} stars</h2>
+				</div>
+			</GameDetailHeader>
 			<form onSubmit={handleSubmit}>
 				<h2>Leave a Review:</h2>
-				<label htmlFor='content'>Content:
-					<textarea name='content' onChange={e=>setContent(e.target.value)} value={content}/>
-				</label><br/>
-				<label htmlFor='rating'>Rating:
-					<input type='number' name='rating' onChange={e=>setRating(e.target.value)} value={rating}/>
-				</label><br/>
+				<label htmlFor='content'>Content:</label><br/>
+					<textarea name='content' onChange={e=>setContent(e.target.value)} value={content}/><br/>
+				<label htmlFor='rating'>Rating:</label><br/>
+					<input type='number' name='rating' onChange={e=>setRating(e.target.value)} value={rating}/><br/>
 				<label htmlFor='completed'>Completed?
-					{/* <input type='checkbox' name='completed' onChange={()=>setCompleted(completed => !completed)}/> */}
 					<input type='checkbox' name='completed' onChange={handleCheck}/>
 				</label><br/>
 				<button type='submit'>Submit</button>
 			</form>
+		</GameDetailGrid>
 			<h1>Reviews:</h1>
 			{renderGameReviews}
-			{/* {reviews.map((review) => <GameDetailReviews user={user} review={review}/>)} */}
-		</div>
+	</GameDetailRows>
   )
 }
 
