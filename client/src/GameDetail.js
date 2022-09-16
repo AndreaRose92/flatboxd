@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import GameDetailReviews from './GameDetailReviews'
 // import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 function GameDetail({user, updateReviewsMasterState}) {
 
+	const history = useHistory()
 	const params = useParams()
 	const [game, setGame] = useState({})
 	useEffect(()=> {
@@ -58,7 +59,7 @@ function GameDetail({user, updateReviewsMasterState}) {
 				}
 			})
 		} else {
-			alert("Log in to leave a review.")
+			history.push('/unauthorized')
 		}
 		setContent('')
 		setRating(0)
